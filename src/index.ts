@@ -1,3 +1,10 @@
-const miVariable: number= 5;
+import { init } from './services/sockets';
+import myServer from './services/server';
+import { Server } from 'socket.io';
 
-console.log (`Mi variable al cuadrado es ${miVariable**2}`);
+const io = new Server(myServer);
+const puerto = process.env.PORT || 8080;
+
+init(io);
+
+myServer.listen(puerto, () => console.log(`Server up puerto ${puerto}`));
